@@ -11,7 +11,7 @@
             $itemPriceForFilter = (float) ($item->discount > 0 ? $item->discount : $item->price);
         @endphp
         <div
-            class="col-lg-6 col-md-6 col-sm-6 col-6 col-fix product-list-col item"
+            class="col-lg-6 col-md-6 col-sm-6 col-12 col-fix product-list-col item"
             data-tags="{{ implode(',', $itemTags) }}"
             data-name="{{ strtolower(trim((string) languageName($item->name))) }}"
             data-price="{{ $itemPriceForFilter }}"
