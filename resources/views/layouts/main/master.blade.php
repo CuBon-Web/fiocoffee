@@ -80,7 +80,8 @@
       <link href="/frontend/css/quickviews_popup_cart.scss.css" rel="stylesheet" type="text/css" media="all" />
       <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+{{-- <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"> --}}
       <script>
          $(document).ready(function($) {
              awe_lazyloadImage();
@@ -255,18 +256,6 @@
       <script src="/frontend/js/main.js" type="text/javascript"></script>
       <script src="/frontend/js/index.js" type="text/javascript"></script>
       <script src="/frontend/js/compare.js" type="text/javascript"></script>
-      <script src="/frontend/js/wow.min.js" type="text/javascript"></script>
-      <script>
-         if (typeof WOW !== 'undefined' && document.querySelector('.wow')) {
-            new WOW({
-               boxClass: 'wow',
-               animateClass: 'animate__animated',
-               offset: 80,
-               mobile: true,
-               live: false
-            }).init();
-         }
-      </script>
       @yield('js')
    </body>
 </html>

@@ -13,19 +13,6 @@
     {{ $ogImage }}
 @endsection
 @section('css')
-<style>
-   .wow {
-      visibility: hidden;
-   }
-   @media (prefers-reduced-motion: reduce) {
-      .wow {
-         visibility: visible !important;
-         animation: none !important;
-         opacity: 1 !important;
-         transform: none !important;
-      }
-   }
-</style>
 @endsection
 @section('js')
 @endsection
@@ -46,7 +33,7 @@
                    class="hero-banner__img" />
                </div>
                <div class="container hero-banner__inner">
-                 <div class="hero-banner__content wow animate__fadeInLeft" data-wow-duration="0.9s">
+                 <div class="hero-banner__content">
                    <h2 class="hero-banner__title">{{ $item->title ?: 'Cà phê phin Việt tiện lợi cho mọi hành trình' }}</h2>
                    <p class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</p>
                    <div class="hero-banner__actions">
@@ -65,11 +52,11 @@
                    class="hero-banner__mobile-img" />
                </div>
                <div class="hero-banner__mobile-body">
-                 <div class="hero-banner__mobile-content wow animate__fadeInUp" data-wow-duration="0.9s">
+                 <div class="hero-banner__mobile-content">
                    <h2 class="hero-banner__title">{{ $item->title ?: 'Cà phê phin Việt tiện lợi cho mọi hành trình' }}</h2>
                    <p class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</p>
                  </div>
-                 <div class="hero-banner__mobile-actions wow animate__fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.9s">
+                 <div class="hero-banner__mobile-actions">
                    <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">MUA NGAY</a>
                    <a href="{{ route('allProduct') }}" class="hero-banner__btn hero-banner__btn--outline" title="Khám phá sản phẩm">KHÁM PHÁ SẢN PHẨM</a>
                  </div>
@@ -92,14 +79,14 @@
      });
   </script>
   <section class="section_cate container">
-     <h2 class="title-module wow animate__fadeInDown" data-wow-duration="0.8s">
+     <h2 class="title-module">
         <a href="javascript:;" title=" Tại sao FIO khác cà phê hòa tan và cà phê pha sẵn?">
           Tại sao FIO khác cà phê hòa tan và cà phê pha sẵn?
         </a>
      </h2>
      <div class="why-choise">
       @foreach ($whyChoose as $item)
-      <div class="why-choise__item wow animate__fadeInUp" data-wow-delay="{{ $loop->index * 0.12 }}s" data-wow-duration="0.8s">
+      <div class="why-choise__item">
          <div class="why-choise__icon" aria-hidden="true">
             <img
                src="{{ url($item->image) }}"
@@ -116,7 +103,7 @@
      </div>
   </section>
   <section class="section_flash_sale container">
-      <h2 class="title-module wow animate__fadeInDown" data-wow-duration="0.8s">
+      <h2 class="title-module">
          <a href="javascript:;" title="Sản phẩm của chúng tôi">
          Sản phẩm của chúng tôi
          </a>
@@ -124,7 +111,7 @@
      <div class="box_flash_sale">
         <div class="row">
          @forelse ($homePro as $item)
-         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 wow animate__fadeInUp" data-wow-delay="{{ $loop->index * 0.1 }}s" data-wow-duration="0.8s" style="margin-bottom: 10px;">
+         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12" style="margin-bottom: 10px;">
             @include('layouts.product.item', ['pro' => $item])
          </div>
          @endforeach
@@ -153,7 +140,7 @@
 
   <section class="section_enjoy">
      <div class="container">
-      <h2 class="title-module title-module--enjoy wow animate__fadeInDown" data-wow-duration="0.8s">
+      <h2 class="title-module title-module--enjoy">
          <a href="javascript:;" title="Cách thưởng thức Fio">
             <span class="title-module__highlight">Cách</span> thưởng thức Fio
          </a>
@@ -162,7 +149,7 @@
       <div class="enjoy-content">
          <div class="enjoy-steps">
             @foreach ($processSteps as $step)
-            <div class="enjoy-step wow animate__fadeInUp" data-wow-delay="{{ $loop->index * 0.15 }}s" data-wow-duration="0.8s">
+            <div class="enjoy-step">
                <span class="enjoy-step__num">{{ $loop->iteration }}</span>
                <div class="enjoy-step__icon">
                   <img src="{{ $step->image ? url($step->image) : asset('frontend/images/lazy.png') }}" width="56" height="56" alt="{{ $step->title }}">
@@ -179,7 +166,7 @@
       <div class="enjoy-content-mobile">
          <div class="enjoy-timeline">
             @foreach ($processSteps as $step)
-            <div class="enjoy-timeline__item wow animate__fadeInLeft" data-wow-delay="{{ $loop->index * 0.12 }}s" data-wow-duration="0.8s">
+            <div class="enjoy-timeline__item">
                <div class="enjoy-timeline__track">
                   <span class="enjoy-timeline__num">{{ $loop->iteration }}</span>
                </div>
@@ -203,7 +190,7 @@
   <section class="section_why_choose">
      <div class="container">
         <div class="row">
-         <div class="col-lg-4 col-md-4 wow animate__fadeInLeft" data-wow-duration="0.9s">
+         <div class="col-lg-4 col-md-4">
             <h2 class="title-module">
                <a href="javascript:;" title="Câu chuyện về Fio">
                   Câu chuyện về Fio
@@ -213,7 +200,7 @@
             </p>
             <a href="{{route('aboutUs')}}" class="hero-banner__btn hero-banner__btn--primary" title="Tìm hiểu thêm">Tìm hiểu thêm</a>
          </div>
-           <div class="col-lg-8 col-md-8 wow animate__fadeInRight" data-wow-duration="0.9s">
+           <div class="col-lg-8 col-md-8">
               <div class="img_thm">
                  <div class="box_img">
                     <img class="lazyload"
@@ -242,12 +229,12 @@
  
   <section class="section_danh_gia lazyload">
      <div class="container">
-      <h2 class="title-module wow animate__fadeInDown" data-wow-duration="0.8s">
+      <h2 class="title-module">
          <a href="javascript:;" title="Khách hàng nói gì về Fio">
             Khách hàng nói gì về Fio
          </a>
       </h2>
-        <div class="review-swiper-wrap wow animate__fadeInUp" data-wow-delay="0.15s" data-wow-duration="0.9s">
+        <div class="review-swiper-wrap">
            <div class="swiper_feedback swiper-container">
               <div class="swiper-wrapper">
                @foreach ($ReviewCus as $item)
@@ -307,7 +294,7 @@
   </script>
    <section class="section-faq">
       <div class="container">
-         <h2 class="title-module title-module--faq wow animate__fadeInDown" data-wow-duration="0.8s">
+         <h2 class="title-module title-module--faq">
             <a href="javascript:;" title="Câu hỏi thường gặp">
                <span class="title-module__highlight">Câu hỏi</span> thường gặp
             </a>
@@ -315,7 +302,7 @@
          @if(isset($homeFaqs) && count($homeFaqs))
          <div class="home-faq" id="home-faq">
             @foreach ($homeFaqs as $faq)
-            <div class="home-faq__item wow animate__fadeInUp" data-wow-delay="{{ $loop->index * 0.08 }}s" data-wow-duration="0.7s">
+            <div class="home-faq__item">
                <button type="button" class="home-faq__question" aria-expanded="false">
                   <span class="home-faq__question-text">{{ $faq->question }}</span>
                   <span class="home-faq__icon" aria-hidden="true">
@@ -350,7 +337,7 @@
    <section class="tieuchi">
       <div class="container">
          <div class="tieuchi__list">
-            <div class="tieuchi__item wow animate__fadeInUp" data-wow-delay="0s" data-wow-duration="0.7s">
+            <div class="tieuchi__item">
                <div class="tieuchi__icon" aria-hidden="true">
                   <img src="{{ asset('frontend/images/tieuchi/icon-shipping.svg') }}" width="40" height="40" alt="">
                </div>
@@ -359,7 +346,7 @@
                   <span class="tieuchi__desc">Miễn phí đơn từ 300.000đ</span>
                </div>
             </div>
-            <div class="tieuchi__item wow animate__fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.7s">
+            <div class="tieuchi__item">
                <div class="tieuchi__icon" aria-hidden="true">
                   <img src="{{ asset('frontend/images/tieuchi/icon-shield.svg') }}" width="40" height="40" alt="">
                </div>
@@ -368,7 +355,7 @@
                   <span class="tieuchi__desc">Bảo mật thông tin tuyệt đối</span>
                </div>
             </div>
-            <div class="tieuchi__item wow animate__fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.7s">
+            <div class="tieuchi__item">
                <div class="tieuchi__icon" aria-hidden="true">
                   <img src="{{ asset('frontend/images/tieuchi/icon-support.svg') }}" width="40" height="40" alt="">
                </div>
@@ -377,7 +364,7 @@
                   <span class="tieuchi__desc">Tư vấn 24/7</span>
                </div>
             </div>
-            <div class="tieuchi__item wow animate__fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.7s">
+            <div class="tieuchi__item">
                <div class="tieuchi__icon" aria-hidden="true">
                   <img src="{{ asset('frontend/images/tieuchi/icon-quality.svg') }}" width="40" height="40" alt="">
                </div>
@@ -391,12 +378,12 @@
    </section>
   <section class="section_blog">
      <div class="container">
-        <h2 class="title-module wow animate__fadeInDown" data-wow-duration="0.8s">
+        <h2 class="title-module">
            <a href="tin-tuc" title="Tin tức mới nhất">
               Tin tức mới nhất
            </a>
         </h2>
-        <div class="swiper_blogs swiper-container wow animate__fadeInUp" data-wow-delay="0.15s" data-wow-duration="0.9s">
+        <div class="swiper_blogs swiper-container">
            <div class="swiper-wrapper load-after" data-section="section_blog">
             @foreach ($hotnews as $item)
             <div class="swiper-slide">
