@@ -54,7 +54,7 @@
                <div class="hero-banner__mobile-body">
                  <div class="hero-banner__mobile-content">
                    <h2 class="hero-banner__title">{{ $item->title ?: 'Cà phê phin Việt tiện lợi cho mọi hành trình' }}</h2>
-                   <p class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</p>
+                   <div class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</div>
                  </div>
                  <div class="hero-banner__mobile-actions">
                    <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">MUA NGAY</a>
@@ -78,10 +78,49 @@
          }
      });
   </script>
+  <section class="section_why_choose">
+   <div class="container">
+      <div class="row">
+       <div class="col-lg-4 col-md-4">
+          <h2 class="title-module">
+             <a href="javascript:;" title="Câu chuyện về Fio">
+                Câu chuyện về Fio
+             </a>
+          </h2>
+          <p class="content_choose">{!!$gioithieu->description!!}
+          </p>
+          <a href="{{route('aboutUs')}}" class="hero-banner__btn hero-banner__btn--primary" title="Tìm hiểu thêm">Tìm hiểu thêm</a>
+       </div>
+         <div class="col-lg-8 col-md-8">
+            <div class="img_thm">
+               <div class="box_img">
+                  <img class="lazyload"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+                     data-src="{{url(json_decode($gioithieu->image)[0])}}"
+                     alt="Tại sao chọn chúng tôi" />
+               </div>
+               {{-- <div class="icon_video open_video" data-video="5RCh8JzLL5Y">
+                  <span><i></i></span>
+               </div> --}}
+            </div>
+         </div>
+         
+      </div>
+   </div>
+   {{-- <div class="popup_video position-fixed w-100 h-100 justify-content-center align-items-center d-flex">
+      <div class="position-relative max-100">
+         <a href="javascript:;"
+            class="close_video position-absolute d-flex m_white_bg_module justify-content-center align-items-center"
+            title="Đóng"><img width="16" height="16" alt="Đóng"
+            src="https://bizweb.dktcdn.net/100/509/495/themes/943203/assets/close.svg?1781227749084"></a>
+         <div class="b_video p-2 p-md-3 m_white_bg_module rounded m-auto"></div>
+      </div>
+   </div> --}}
+</section>
   <section class="section_cate container">
      <h2 class="title-module">
-        <a href="javascript:;" title=" Tại sao FIO khác cà phê hòa tan và cà phê pha sẵn?">
-          Tại sao FIO khác cà phê hòa tan và cà phê pha sẵn?
+        <a href="javascript:;" title="Điều gì khiến FIO khác biệt?">
+         Điều gì khiến FIO khác biệt?
         </a>
      </h2>
      <div class="why-choise">
@@ -109,40 +148,57 @@
          </a>
       </h2>
      <div class="box_flash_sale">
-        <div class="row">
-         @forelse ($homePro as $item)
-         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12" style="margin-bottom: 10px;">
-            @include('layouts.product.item', ['pro' => $item])
-         </div>
-         @endforeach
-           {{-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-              <div class="product-flash-swiper swiper-container">
-                 <div class="swiper-wrapper load-after" data-section="section_flash_sale">
-                    @forelse ($homePro as $item)
-                    <div class="swiper-slide">
-                       
-                    </div>
-                    @empty
-                    <div class="swiper-slide">
-                       <p>Chưa có sản phẩm khuyến mãi.</p>
-                    </div>
-                    @endforelse
-                 </div>
-                 <div class="swiper-button-prev"></div>
-                 <div class="swiper-button-next"></div>
+        <div class="product-flash-swiper swiper-container">
+           <div class="swiper-wrapper">
+              @forelse ($homePro as $item)
+              <div class="swiper-slide">
+                 @include('layouts.product.item', ['pro' => $item])
               </div>
-           </div> --}}
+              @empty
+              <div class="swiper-slide">
+                 <p>Chưa có sản phẩm.</p>
+              </div>
+              @endforelse
+           </div>
+           <div class="swiper-button-prev"></div>
+           <div class="swiper-button-next"></div>
         </div>
      </div>
   </section>
+  <script>
+     var swiper_products = new Swiper('.product-flash-swiper', {
+         slidesPerView: 1.3,
+         spaceBetween: 14,
+         watchOverflow: true,
+         grabCursor: true,
+         navigation: {
+             nextEl: '.product-flash-swiper .swiper-button-next',
+             prevEl: '.product-flash-swiper .swiper-button-prev',
+         },
+         breakpoints: {
+             640: {
+                 slidesPerView: 1.5,
+                 spaceBetween: 16
+             },
+             768: {
+                 slidesPerView: 2,
+                 spaceBetween: 20
+             },
+             992: {
+                 slidesPerView: 2,
+                 spaceBetween: 24
+             }
+         }
+     });
+  </script>
 
 
 
   <section class="section_enjoy">
      <div class="container">
       <h2 class="title-module title-module--enjoy">
-         <a href="javascript:;" title="Cách thưởng thức Fio">
-            <span class="title-module__highlight">Cách</span> thưởng thức Fio
+         <a href="javascript:;" title="Hướng dẫn sử dụng">
+            <span class="title-module__highlight">Hướng</span> dẫn sử dụng
          </a>
       </h2>
       @if(isset($processSteps) && count($processSteps))
@@ -187,51 +243,13 @@
      </div>
   </section>
   
-  <section class="section_why_choose">
-     <div class="container">
-        <div class="row">
-         <div class="col-lg-4 col-md-4">
-            <h2 class="title-module">
-               <a href="javascript:;" title="Câu chuyện về Fio">
-                  Câu chuyện về Fio
-               </a>
-            </h2>
-            <p class="content_choose">{!!$gioithieu->description!!}
-            </p>
-            <a href="{{route('aboutUs')}}" class="hero-banner__btn hero-banner__btn--primary" title="Tìm hiểu thêm">Tìm hiểu thêm</a>
-         </div>
-           <div class="col-lg-8 col-md-8">
-              <div class="img_thm">
-                 <div class="box_img">
-                    <img class="lazyload"
-                       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                       data-src="{{url(json_decode($gioithieu->image)[0])}}"
-                       alt="Tại sao chọn chúng tôi" />
-                 </div>
-                 {{-- <div class="icon_video open_video" data-video="5RCh8JzLL5Y">
-                    <span><i></i></span>
-                 </div> --}}
-              </div>
-           </div>
-           
-        </div>
-     </div>
-     {{-- <div class="popup_video position-fixed w-100 h-100 justify-content-center align-items-center d-flex">
-        <div class="position-relative max-100">
-           <a href="javascript:;"
-              class="close_video position-absolute d-flex m_white_bg_module justify-content-center align-items-center"
-              title="Đóng"><img width="16" height="16" alt="Đóng"
-              src="https://bizweb.dktcdn.net/100/509/495/themes/943203/assets/close.svg?1781227749084"></a>
-           <div class="b_video p-2 p-md-3 m_white_bg_module rounded m-auto"></div>
-        </div>
-     </div> --}}
-  </section>
+  
  
   <section class="section_danh_gia lazyload">
      <div class="container">
       <h2 class="title-module">
-         <a href="javascript:;" title="Khách hàng nói gì về Fio">
-            Khách hàng nói gì về Fio
+         <a href="javascript:;" title="Đánh giá khách hàng">
+            Đánh giá khách hàng
          </a>
       </h2>
         <div class="review-swiper-wrap">
@@ -334,7 +352,7 @@
          });
       });
    </script>
-   <section class="tieuchi">
+   {{-- <section class="tieuchi">
       <div class="container">
          <div class="tieuchi__list">
             <div class="tieuchi__item">
@@ -375,7 +393,7 @@
             </div>
          </div>
       </div>
-   </section>
+   </section> --}}
   <section class="section_blog">
      <div class="container">
         <h2 class="title-module">

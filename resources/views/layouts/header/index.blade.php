@@ -33,7 +33,7 @@
                  <path fill="#ffffff"
                     d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"
                     class=""></path>
-              </svg>
+              </svg> <span>MENU</span>
            </div>
            <a href="{{ route('home') }}" class="logo" title="Logo">
            <img width="378" height="96"
@@ -195,11 +195,11 @@
                              <a class="nav-item__link" href="{{ route('aboutUs') }}" title="Về chúng tôi">Về chúng tôi</a>
                           </div>
                        </li>
-                       <li class="nav-item nav-item--label">
+                       <li class="nav-item nav-item--label nav-item--drawer-only">
                           <span class="nav-label">Danh mục sản phẩm</span>
                        </li>
                        @foreach ($categoryhome as $item)
-                       <li class="nav-item{{ count($item->typeCate) > 0 ? ' has-childs' : '' }}">
+                       <li class="nav-item nav-item--drawer-only{{ count($item->typeCate) > 0 ? ' has-childs' : '' }}">
                           <div class="nav-item__row">
                              <a class="nav-item__link{{ $item->avatar ? ' nav-cate-link' : '' }}"
                                 href="{{ route('allListProCate', ['danhmuc' => $item->slug]) }}"
@@ -229,7 +229,7 @@
                           @endif
                        </li>
                        @endforeach
-                       <li class="nav-item nav-item--label">
+                       <li class="nav-item nav-item--label nav-item--drawer-only">
                           <span class="nav-label">Khám phá thêm</span>
                        </li>
                        <li class="nav-item{{ request()->routeIs('allListBlog', 'listCateBlog', 'detailBlog', 'listTypeBlog') ? ' active' : '' }}{{ ($blogCate ?? collect())->count() > 0 ? ' has-childs' : '' }}">

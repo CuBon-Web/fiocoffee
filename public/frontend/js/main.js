@@ -128,7 +128,7 @@ $(window).on('scroll  mousemove touchstart',function(){
 				},500);
 				return false;
 			})
-			$('.menu-bar, #btn-menu-mobile-fix').on('click', function(){
+			$('.menu-bar').on('click', function(){
 				$('.opacity_menu').addClass('current');
 				$('.header-nav').addClass('current');
 			});

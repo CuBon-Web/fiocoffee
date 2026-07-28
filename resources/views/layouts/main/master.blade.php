@@ -123,25 +123,18 @@
                </a>
             </li>
             <li class="menu-bar2">
-               <a href="javascript:void(0)" id="btn-menu-mobile-fix" title="Menu">
-                  <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="bars" role="img"
-                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                     class="svg-inline--fa fa-bars fa-w-14">
-                     <path fill="currentColor"
-                        d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"
-                        class=""></path>
-                  </svg>
-                  <span>Menu</span>
+               <a href="javascript:void(0)" id="btn-menu-mobile-fix" title="Gọi ngay">
+                  <img src="/frontend/images/phone-svgrepo-com.svg" alt="Gọi ngay">
+                  <span>Gọi ngay</span>
                </a>
             </li>
             <li>
-               <a href="tel:{{$setting->phone1}}" title="So sánh">
+               <a href="https://zalo.me/{{$setting->phone1}}" target="_blank" title="So sánh">
                <img width="32" height="32" class="lazyload"
                   src="/frontend/images/lazy.png"
-                  data-src="/frontend/images/check-list.png?1781227749084"
-                  alt="So sánh" />
-               <span class="compareCount">{{ count($compare ?? []) }}</span>
-               <span>Đặt hàng</span>
+                  data-src="/frontend/images/zalo-svgrepo-com.svg"
+                  alt="Zalo" />
+               <span>Zalo</span>
                </a>
             </li>
             <li>

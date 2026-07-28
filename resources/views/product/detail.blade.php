@@ -308,9 +308,9 @@
                      <span class="product-detail-meta__label">Tình trạng:</span>
                      <span class="product-detail-meta__stock">Còn hàng</span>
                   </div> --}}
-                  <div class="product-description-meta__item">
+                  {{-- <div class="product-description-meta__item">
                      <p>{!! languageName($product->description) !!}</p>
-                  </div>
+                  </div> --}}
                </div>
 
                <form id="product-purchase-form" class="product-detail-purchase"
@@ -359,7 +359,7 @@
                   </div>
                </form>
 
-               @if ($hotline || $facebookUrl || $zaloUrl)
+               {{-- @if ($hotline || $facebookUrl || $zaloUrl)
                <div class="product-detail-actions">
                   @if ($hotline)
                   <a href="tel:{{ $hotline }}" class="product-detail-actions__btn product-detail-actions__btn--phone" title="Gọi {{ $hotline }}">
@@ -380,7 +380,7 @@
                   </a>
                   @endif
                </div>
-               @endif
+               @endif --}}
             </div>
          </div>
 
