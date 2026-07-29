@@ -74,7 +74,6 @@
                  </div>
                  <div class="hero-banner__mobile-actions">
                    <a href="https://zalo.me/{{$setting->phone1}}" class="hero-banner__btn hero-banner__btn--primary hero-banner__btn--quote" title="Nhận báo giá">
-                     <span class="hero-banner__btn-doc" aria-hidden="true"></span>
                      <span>Nhận báo giá</span>
                    </a>
                    @if ($ytId)

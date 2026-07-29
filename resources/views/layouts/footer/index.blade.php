@@ -104,6 +104,7 @@
                     </a>
                     </span>
                  </div>
+                 <br>
                  <div class="map">
                   {!!$setting->iframe_map!!}
                  </div>
