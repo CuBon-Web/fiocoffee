@@ -48,7 +48,7 @@
                    <h2 class="hero-banner__title">{{ $item->title ?: 'Cà phê phin Việt tiện lợi cho mọi hành trình' }}</h2>
                    <p class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</p>
                    <div class="hero-banner__actions">
-                     <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">Nhận báo giá</a>
+                     <a href="https://zalo.me/{{$setting->phone1}}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">Nhận báo giá</a>
                      @if ($ytId)
                      <a href="javascript:void(0)" class="hero-banner__btn hero-banner__btn--outline hero-banner__btn--video open_video" data-video="{{ $ytId }}" title="Xem video">
                        <span class="hero-banner__btn-play" aria-hidden="true"></span>
@@ -73,7 +73,10 @@
                    <div class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</div>
                  </div>
                  <div class="hero-banner__mobile-actions">
-                   <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">Nhận báo giá</a>
+                   <a href="https://zalo.me/{{$setting->phone1}}" class="hero-banner__btn hero-banner__btn--primary hero-banner__btn--quote" title="Nhận báo giá">
+                     <span class="hero-banner__btn-doc" aria-hidden="true"></span>
+                     <span>Nhận báo giá</span>
+                   </a>
                    @if ($ytId)
                    <a href="javascript:void(0)" class="hero-banner__btn hero-banner__btn--outline hero-banner__btn--video open_video" data-video="{{ $ytId }}" title="Xem video">
                      <span class="hero-banner__btn-play" aria-hidden="true"></span>
