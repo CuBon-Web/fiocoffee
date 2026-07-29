@@ -123,7 +123,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label>Link Tải Profile</label>
+                  <label>Link youtube giới thiệu</label>
                   <vs-input
                     type="text"
                     size="default"

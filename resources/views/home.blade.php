@@ -17,6 +17,17 @@
 @section('js')
 @endsection
 @section('content')
+@php
+    $ytRaw = trim((string) ($setting->linkpopup ?? ''));
+    $ytId = null;
+    if ($ytRaw !== '') {
+        if (preg_match('/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{6,})/', $ytRaw, $m)) {
+            $ytId = $m[1];
+        } elseif (preg_match('/^[A-Za-z0-9_-]{6,}$/', $ytRaw)) {
+            $ytId = $ytRaw;
+        }
+    }
+@endphp
 <div class="bodywrap">
   <h1 class="d-none">{{$setting->company}}</h1>
   <div class="box_slide_banner box_slide_banner--full">
@@ -37,8 +48,13 @@
                    <h2 class="hero-banner__title">{{ $item->title ?: 'Cà phê phin Việt tiện lợi cho mọi hành trình' }}</h2>
                    <p class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</p>
                    <div class="hero-banner__actions">
-                     <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">MUA NGAY</a>
-                     <a href="{{ route('aboutUs') }}" class="hero-banner__btn hero-banner__btn--outline" title="Khám phá Fio">KHÁM PHÁ FIO</a>
+                     <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">Nhận báo giá</a>
+                     @if ($ytId)
+                     <a href="javascript:void(0)" class="hero-banner__btn hero-banner__btn--outline hero-banner__btn--video open_video" data-video="{{ $ytId }}" title="Xem video">
+                       <span class="hero-banner__btn-play" aria-hidden="true"></span>
+                       <span>Xem video</span>
+                     </a>
+                     @endif
                    </div>
                  </div>
                </div>
@@ -57,8 +73,13 @@
                    <div class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</div>
                  </div>
                  <div class="hero-banner__mobile-actions">
-                   <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">MUA NGAY</a>
-                   <a href="{{ route('allProduct') }}" class="hero-banner__btn hero-banner__btn--outline" title="Khám phá sản phẩm">KHÁM PHÁ SẢN PHẨM</a>
+                   <a href="{{ $item->link ?: route('allProduct') }}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">Nhận báo giá</a>
+                   @if ($ytId)
+                   <a href="javascript:void(0)" class="hero-banner__btn hero-banner__btn--outline hero-banner__btn--video open_video" data-video="{{ $ytId }}" title="Xem video">
+                     <span class="hero-banner__btn-play" aria-hidden="true"></span>
+                     <span>Xem video</span>
+                   </a>
+                   @endif
                  </div>
                </div>
              </div>
@@ -99,23 +120,12 @@
                      data-src="{{url(json_decode($gioithieu->image)[0])}}"
                      alt="Tại sao chọn chúng tôi" />
                </div>
-               {{-- <div class="icon_video open_video" data-video="5RCh8JzLL5Y">
-                  <span><i></i></span>
-               </div> --}}
+               {{-- video play icon removed; use hero "Xem video" popup --}}
             </div>
          </div>
          
       </div>
    </div>
-   {{-- <div class="popup_video position-fixed w-100 h-100 justify-content-center align-items-center d-flex">
-      <div class="position-relative max-100">
-         <a href="javascript:;"
-            class="close_video position-absolute d-flex m_white_bg_module justify-content-center align-items-center"
-            title="Đóng"><img width="16" height="16" alt="Đóng"
-            src="https://bizweb.dktcdn.net/100/509/495/themes/943203/assets/close.svg?1781227749084"></a>
-         <div class="b_video p-2 p-md-3 m_white_bg_module rounded m-auto"></div>
-      </div>
-   </div> --}}
 </section>
   <section class="section_cate container">
      <h2 class="title-module">
@@ -181,11 +191,11 @@
                  spaceBetween: 16
              },
              768: {
-                 slidesPerView: 2,
+                 slidesPerView: 3,
                  spaceBetween: 20
              },
              992: {
-                 slidesPerView: 2,
+                 slidesPerView: 4,
                  spaceBetween: 24
              }
          }
@@ -285,7 +295,7 @@
   </section>
   <script>
      var swiper_feedback = new Swiper('.swiper_feedback', {
-         slidesPerView: 1,
+         slidesPerView: 1.3,
          spaceBetween: 16,
          watchOverflow: true,
          slidesPerGroup: 1,
@@ -296,7 +306,7 @@
          },
          breakpoints: {
              640: {
-                 slidesPerView: 1,
+                 slidesPerView: 1.3,
                  spaceBetween: 16
              },
              768: {
@@ -510,5 +520,63 @@
      <h5 class="alert-heading"></h5>
      <p class="alert-content"></p>
   </div>
+
+  <div class="popup_video position-fixed w-100 h-100 justify-content-center align-items-center d-flex" aria-hidden="true">
+     <div class="position-relative max-100">
+        <a href="javascript:void(0)"
+           class="close_video position-absolute d-flex m_white_bg_module justify-content-center align-items-center"
+           title="Đóng" aria-label="Đóng video">
+           <img width="16" height="16" alt="Đóng" src="{{ asset('frontend/images/close.svg') }}">
+        </a>
+        <div class="b_video p-2 p-md-3 m_white_bg_module rounded m-auto"></div>
+     </div>
+  </div>
+  <script>
+     (function ($) {
+        function closeYoutubePopup() {
+           var $popup = $('.popup_video');
+           $popup.removeClass('open').attr('aria-hidden', 'true');
+           $popup.find('.b_video').empty();
+           $('body').css('overflow', '');
+        }
+
+        $(document).on('click', '.open_video', function (e) {
+           e.preventDefault();
+           var videoId = String($(this).data('video') || '').trim();
+           if (!videoId) return;
+
+           var embed = ''
+              + '<div class="embed-responsive embed-responsive-16by9">'
+              +   '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0"'
+              +   ' title="YouTube video"'
+              +   ' allow="autoplay; encrypted-media; picture-in-picture"'
+              +   ' allowfullscreen loading="lazy"></iframe>'
+              + '</div>';
+
+           var $popup = $('.popup_video').first();
+           $popup.find('.b_video').html(embed);
+           $popup.addClass('open').attr('aria-hidden', 'false');
+           $('body').css('overflow', 'hidden');
+        });
+
+        $(document).on('click', '.close_video', function (e) {
+           e.preventDefault();
+           e.stopPropagation();
+           closeYoutubePopup();
+        });
+
+        $(document).on('click', '.popup_video', function (e) {
+           if (e.target === this) {
+              closeYoutubePopup();
+           }
+        });
+
+        $(document).on('keydown', function (e) {
+           if (e.key === 'Escape' && $('.popup_video.open').length) {
+              closeYoutubePopup();
+           }
+        });
+     })(jQuery);
+  </script>
 </div>
 @endsection

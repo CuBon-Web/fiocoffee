@@ -53,7 +53,7 @@
                 />
               </div>
               <div class="form-group col-6" v-if="objData.status_variant == false">
-                <label>Giá bán ra</label>
+                <label>Giá 1 ly</label>
                 <vs-input
                   type="number"
                   class="w-100"
@@ -280,7 +280,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group tag-manager">
+              <!-- <div class="form-group tag-manager">
                 <div class="d-flex align-items-center justify-content-between mb-2">
                   <label class="mb-0">Thẻ tag sản phẩm</label>
                   <span class="tag-selected-count">{{ objData.tags.length }} đã chọn</span>
@@ -358,34 +358,34 @@
                     </el-button>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="form-group">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                  <label class="mb-0">Thông số kỹ thuật</label>
+                  <label class="mb-0">Thông tin bổ sung</label>
                   <span class="tech-spec-count">{{ normalizeTechnicalSpecs(objData.size).length }} thông số</span>
                 </div>
                 <p class="tech-spec-note mb-2">Nhập nhanh, nhấn Enter ở ô thông số để thêm dòng mới.</p>
                 <div class="tech-spec-grid-header">
                   <span>Tiêu đề</span>
-                  <span>Chi tiết</span>
+                  <!-- <span>Chi tiết</span> -->
                   <span></span>
                 </div>
                 <div class="tech-spec-row" v-for="(item, index) in objData.size" :key="index">
                   <vs-input
                     type="text"
                     size="default"
-                    :placeholder="'VD: CPU, RAM, Màn hình...'"
+                    :placeholder="'VD: Lớp Caramen sánh mịn...'"
                     class="w-100"
                     v-model="objData.size[index].title"
                   />
-                  <vs-input
+                  <!-- <vs-input
                     type="text"
                     size="default"
                     :placeholder="'VD: Intel Core i5 / 16GB DDR4...'"
                     class="w-100"
                     v-model="objData.size[index].detail"
                     @keyup.enter.native="handleTechnicalSpecEnter(index)"
-                  />
+                  /> -->
                   <el-button
                     size="mini"
                     type="danger"
