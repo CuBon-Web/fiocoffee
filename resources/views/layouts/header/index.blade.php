@@ -41,6 +41,9 @@
               alt="{{$setting->company}}">
            </a>
            <div class="box_poy_mb d-lg-none d-inline-block">
+            <div class="gg-trans">
+              @include('partials.google-translate-lang')
+            </div>
               <div class="item_poly_mb">
                  <a href="{{route('listCart')}}" title="Giỏ hàng" class="opaci_href">
                  <img width="32" height="32" class="lazyload"
@@ -95,6 +98,9 @@
                     <span class="count-text count count_item_pr">{{ collect($cartcontent ?? [])->sum('quantity') }}</span> sản phẩm
                     </span>
                  </div>
+              </div>
+              <div class="gg-trans hid-mb d-none d-lg-inline-flex">
+                 @include('partials.google-translate-lang')
               </div>
               
            </div>

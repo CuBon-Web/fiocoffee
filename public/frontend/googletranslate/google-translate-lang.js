@@ -1,12 +1,12 @@
 /**
- * EN / VI — HTML gốc từ server là tiếng Anh (database).
- * EN = không dùng widget. VI = Google Translate (en → vi).
+ * VI / EN — HTML gốc từ server là tiếng Việt.
+ * VI = không dùng widget. EN = Google Translate (vi → en).
  */
 (function (global) {
     'use strict';
 
-    var PAGE_LANG = 'en';
-    var DEFAULT_LANG = 'en';
+    var PAGE_LANG = 'vi';
+    var DEFAULT_LANG = 'vi';
     var STORAGE_KEY = 'gt_site_lang';
     var COOKIE_NAME = 'googtrans';
 
@@ -33,13 +33,13 @@
         });
     }
 
-    function setVietnameseCookie() {
+    function setEnglishCookie() {
         var secure = global.location.protocol === 'https:' ? ';Secure' : '';
         purgeGoogTransCookies();
         document.cookie =
             COOKIE_NAME +
             '=' +
-            encodeURIComponent('/' + PAGE_LANG + '/vi') +
+            encodeURIComponent('/' + PAGE_LANG + '/en') +
             ';path=/;max-age=31536000;SameSite=Lax' +
             secure;
     }
@@ -71,15 +71,15 @@
         } catch (e) {}
 
         var cookie = readCookie();
-        if (cookie.indexOf('/vi') !== -1) {
-            return 'vi';
+        if (cookie.indexOf('/en') !== -1) {
+            return 'en';
         }
 
         return DEFAULT_LANG;
     }
 
     function shouldUseTranslate() {
-        return getSavedLang() === 'vi';
+        return getSavedLang() === 'en';
     }
 
     function updateButtons() {
@@ -108,8 +108,8 @@
             global.localStorage.setItem(STORAGE_KEY, lang);
         } catch (e) {}
 
-        if (lang === 'vi') {
-            setVietnameseCookie();
+        if (lang === 'en') {
+            setEnglishCookie();
         } else {
             purgeGoogTransCookies();
         }
@@ -127,7 +127,7 @@
             return;
         }
 
-        setVietnameseCookie();
+        setEnglishCookie();
 
         global.googleTranslateElementInit = function () {
             if (!global.google || !global.google.translate) {
@@ -148,8 +148,8 @@
 
             global.setTimeout(function () {
                 var combo = document.querySelector('select.goog-te-combo');
-                if (combo && combo.value !== 'vi') {
-                    combo.value = 'vi';
+                if (combo && combo.value !== 'en') {
+                    combo.value = 'en';
                     combo.dispatchEvent(new Event('change'));
                 }
             }, 300);

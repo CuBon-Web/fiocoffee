@@ -2,22 +2,31 @@
   <div class="mid-footer">
      <div class="container">
         <div class="row">
-           <div class="col-12 col-lg-4 ft-info">
+           <div class="col-12 col-lg-6 ft-info">
               <a href="/" class="logo_foo" title="Logo">
               <img width="378" height="96"
                  src="{{$setting->logo_footer}}"
                  alt="{{$setting->company}}">
               </a>
+              <h3>{{$setting->company}}</h3>
               <div class="des_foo">
                  {!!$setting->webname!!} <br>
               </div>
-              <div class="list_phone_foo">
+              {{-- <div class="list_phone_foo">
                  <a href="tel:{{$setting->phone1}}" title="{{$setting->phone1}}">
                  Tư vấn mua hàng <span>{{$setting->phone1}}</span>
                  </a>
+              <div class="social-media">
+                <a href="https://www.facebook.com/{{$setting->facebook}}" target="_blank" title="Facebook">
+                  <img src="/frontend/images/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/{{$setting->instagram}}" target="_blank" title="Instagram">
+                  <img src="/frontend/images/instagram.png" alt="Instagram">
+                </a>
               </div>
+              </div> --}}
            </div>
-           <div class="col-12 col-lg-5 ft-menu">
+           {{-- <div class="col-12 col-lg-5 ft-menu">
               <div class="row">
                  <div class="col-12 col-sm-6 link-list col-footer footer-click">
                     <h4 class="title-menu title-menu2">
@@ -48,10 +57,10 @@
                     </ul>
                  </div>
               </div>
-           </div>
-           <div class="col-12 col-lg-3">
+           </div> --}}
+           <div class="col-12 col-lg-6">
               <h4 class="title-menu">
-                 Liên hệ
+                Chăm sóc khách hàng
               </h4>
               <div class="list-menu toggle-mn">
                  <div class="content-contact clearfix">
@@ -94,6 +103,9 @@
                     {{$setting->email}}
                     </a>
                     </span>
+                 </div>
+                 <div class="map">
+                  {!!$setting->iframe_map!!}
                  </div>
               </div>
            </div>
