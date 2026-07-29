@@ -93,8 +93,8 @@ iframe.goog-te-banner-frame {
 
 @media (max-width: 575px) {
     .gt-lang__btn {
-        min-width: 30px;
-        height: 24px;
+        min-width: 20px;
+        height: 17px;
         padding: 0 8px;
         font-size: 10px;
     }
