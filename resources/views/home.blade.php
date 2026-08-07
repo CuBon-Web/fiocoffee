@@ -151,6 +151,54 @@
       @endforeach
      </div>
   </section>
+  <section class="section_enjoy">
+   <div class="container">
+    <h2 class="title-module title-module--enjoy">
+       <a href="javascript:;" title="Hướng dẫn sử dụng">
+          <span class="title-module__highlight">Hướng</span> dẫn sử dụng
+       </a>
+    </h2>
+    @if(isset($processSteps) && count($processSteps))
+    <div class="enjoy-content">
+       <div class="enjoy-steps">
+          @foreach ($processSteps as $step)
+          <div class="enjoy-step">
+             <span class="enjoy-step__num">{{ $loop->iteration }}</span>
+             <div class="enjoy-step__icon">
+                <img src="{{ $step->image ? url($step->image) : asset('frontend/images/lazy.png') }}" width="56" height="56" alt="{{ $step->title }}">
+             </div>
+             <p class="enjoy-step__label">{{ $step->title }}</p>
+             <small class="enjoy-step__desc">{{ $step->description }}</small>
+          </div>
+          @if (!$loop->last)
+          <span class="enjoy-step__arrow" aria-hidden="true">→</span>
+          @endif
+          @endforeach
+       </div>
+    </div>
+    <div class="enjoy-content-mobile">
+       <div class="enjoy-timeline">
+          @foreach ($processSteps as $step)
+          <div class="enjoy-timeline__item">
+             <div class="enjoy-timeline__track">
+                <span class="enjoy-timeline__num">{{ $loop->iteration }}</span>
+             </div>
+             <div class="enjoy-timeline__card">
+                <div class="enjoy-timeline__icon">
+                   <img src="{{ $step->image ? url($step->image) : asset('frontend/images/lazy.png') }}" width="40" height="40" alt="{{ $step->title }}">
+                </div>
+                <div class="enjoy-timeline__content">
+                   <p class="enjoy-timeline__label">{{ $step->title }}</p>
+                   <small class="enjoy-timeline__desc">{{ $step->description }}</small>
+                </div>
+             </div>
+          </div>
+          @endforeach
+       </div>
+    </div>
+    @endif
+   </div>
+</section>
   <section class="section_flash_sale container">
       <h2 class="title-module">
          <a href="javascript:;" title="Sản phẩm của chúng tôi">
@@ -204,54 +252,7 @@
 
 
 
-  <section class="section_enjoy">
-     <div class="container">
-      <h2 class="title-module title-module--enjoy">
-         <a href="javascript:;" title="Hướng dẫn sử dụng">
-            <span class="title-module__highlight">Hướng</span> dẫn sử dụng
-         </a>
-      </h2>
-      @if(isset($processSteps) && count($processSteps))
-      <div class="enjoy-content">
-         <div class="enjoy-steps">
-            @foreach ($processSteps as $step)
-            <div class="enjoy-step">
-               <span class="enjoy-step__num">{{ $loop->iteration }}</span>
-               <div class="enjoy-step__icon">
-                  <img src="{{ $step->image ? url($step->image) : asset('frontend/images/lazy.png') }}" width="56" height="56" alt="{{ $step->title }}">
-               </div>
-               <p class="enjoy-step__label">{{ $step->title }}</p>
-               <small class="enjoy-step__desc">{{ $step->description }}</small>
-            </div>
-            @if (!$loop->last)
-            <span class="enjoy-step__arrow" aria-hidden="true">→</span>
-            @endif
-            @endforeach
-         </div>
-      </div>
-      <div class="enjoy-content-mobile">
-         <div class="enjoy-timeline">
-            @foreach ($processSteps as $step)
-            <div class="enjoy-timeline__item">
-               <div class="enjoy-timeline__track">
-                  <span class="enjoy-timeline__num">{{ $loop->iteration }}</span>
-               </div>
-               <div class="enjoy-timeline__card">
-                  <div class="enjoy-timeline__icon">
-                     <img src="{{ $step->image ? url($step->image) : asset('frontend/images/lazy.png') }}" width="40" height="40" alt="{{ $step->title }}">
-                  </div>
-                  <div class="enjoy-timeline__content">
-                     <p class="enjoy-timeline__label">{{ $step->title }}</p>
-                     <small class="enjoy-timeline__desc">{{ $step->description }}</small>
-                  </div>
-               </div>
-            </div>
-            @endforeach
-         </div>
-      </div>
-      @endif
-     </div>
-  </section>
+  
   
   
  
