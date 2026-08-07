@@ -94,11 +94,9 @@
   </div>
   <script>
      var swiper = new Swiper('.home-slider', {
-         loop: true,
+         loop: false,
          autoHeight: true,
-         autoplay: {
-             delay: 4500,
-         }
+         autoplay: false
      });
   </script>
   <section class="section_why_choose">
