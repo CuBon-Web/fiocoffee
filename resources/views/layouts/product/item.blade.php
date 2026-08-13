@@ -41,14 +41,14 @@
 @once
 <style>
    .product-feature-list {
-       margin: 10px 0 0;
-       padding: 0;
-       list-style: none;
+      margin: 15px 0 19px;
+    padding: 0;
+    list-style: none;
    }
 
    .product-feature-list__item {
        position: relative;
-       margin-bottom: 8px;
+       margin-bottom: 15px;
        padding-left: 18px;
        color: #3C2618;
        font-size: 14px;
@@ -91,7 +91,7 @@
     <div class="product-info">
        <div class="product-info__text">
           <h3 class="product-name">
-             <a class="line-clamp line-clamp-2" href="{{ $productUrl }}" title="{{ $productName }}">{{ $productName }}</a>
+             <a href="{{ $productUrl }}" title="{{ $productName }}">{{ $productName }}</a>
           </h3>
           <ul class="product-feature-list">
             @foreach ($size as $item)

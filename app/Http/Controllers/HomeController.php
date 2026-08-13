@@ -36,7 +36,7 @@ class HomeController extends Controller
         //     });
         $data['hotnews'] = Blog::where([
             ['status','=',1]
-        ])->orderBy('id','DESC')->limit(3)->get(['id','title','slug','created_at','image','description']);
+        ])->orderBy('id','DESC')->limit(8)->get(['id','title','slug','created_at','image','description']);
         $data['gioithieu'] = PageContent::where('slug', 'gioi-thieu')
             ->whereIn('language', [app()->getLocale(), 'en', 'vi'])
             ->orderByRaw("FIELD(language, ?, 'en', 'vi')", [app()->getLocale()])

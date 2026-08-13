@@ -410,7 +410,7 @@
             <h2 class="product-detail-related__title">Sản phẩm liên quan</h2>
             <div class="row row-fix">
                @foreach ($productlq as $item)
-               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 col-fix">
+               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 col-fix">
                   @include('layouts.product.item', ['pro' => $item])
                </div>
                @endforeach

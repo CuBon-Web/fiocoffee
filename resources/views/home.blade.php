@@ -36,6 +36,7 @@
          @foreach ($banner as $item)
          <div class="swiper-slide">
            <div class="hero-banner">
+             @if (!empty($item->image))
              <div class="hero-banner__desktop d-none d-lg-block">
                <div class="hero-banner__media">
                  <img
@@ -43,46 +44,18 @@
                    alt="{{ $item->title ?: 'Fio Coffee' }}"
                    class="hero-banner__img" />
                </div>
-               <div class="container hero-banner__inner">
-                 <div class="hero-banner__content">
-                   <h2 class="hero-banner__title">{{ $item->title ?: 'Cà phê phin Việt tiện lợi cho mọi hành trình' }}</h2>
-                   <p class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</p>
-                   <div class="hero-banner__actions">
-                     <a href="https://zalo.me/{{$setting->phone1}}" class="hero-banner__btn hero-banner__btn--primary" title="Mua ngay">Nhận báo giá</a>
-                     @if ($ytId)
-                     <a href="javascript:void(0)" class="hero-banner__btn hero-banner__btn--outline hero-banner__btn--video open_video" data-video="{{ $ytId }}" title="Xem video">
-                       <span class="hero-banner__btn-play" aria-hidden="true"></span>
-                       <span>Xem video</span>
-                     </a>
-                     @endif
-                   </div>
-                 </div>
-               </div>
              </div>
-             @if (!empty($item->image_mobile))
+             @endif
+             @php
+                $mobileBanner = !empty($item->image_mobile) ? $item->image_mobile : ($item->image ?? '');
+             @endphp
+             @if (!empty($mobileBanner))
              <div class="hero-banner__mobile d-lg-none">
                <div class="hero-banner__mobile-media">
                  <img
-                   src="{{ url($item->image_mobile) }}"
+                   src="{{ url($mobileBanner) }}"
                    alt="{{ $item->title ?: 'Fio Coffee' }}"
                    class="hero-banner__mobile-img" />
-               </div>
-               <div class="hero-banner__mobile-body">
-                 <div class="hero-banner__mobile-content">
-                   <h2 class="hero-banner__title">{{ $item->title ?: 'Cà phê phin Việt tiện lợi cho mọi hành trình' }}</h2>
-                   <div class="hero-banner__desc">{!! $item->description ?: 'Giữ trọn hương vị cà phê phin truyền thống trong một cách thưởng thức đơn giản và tiện lợi hơn.' !!}</div>
-                 </div>
-                 <div class="hero-banner__mobile-actions">
-                   <a href="https://zalo.me/{{$setting->phone1}}" class="hero-banner__btn hero-banner__btn--primary hero-banner__btn--quote" title="Nhận báo giá">
-                     <span>Nhận báo giá</span>
-                   </a>
-                   @if ($ytId)
-                   <a href="javascript:void(0)" class="hero-banner__btn hero-banner__btn--outline hero-banner__btn--video open_video" data-video="{{ $ytId }}" title="Xem video">
-                     <span class="hero-banner__btn-play" aria-hidden="true"></span>
-                     <span>Xem video</span>
-                   </a>
-                   @endif
-                 </div>
                </div>
              </div>
              @endif
@@ -446,7 +419,7 @@
            <div class="swiper-button-next"></div>
         </div>
         <div class="see-more">
-           <a href="tin-tuc" title="Xem tất cả">Xem tất cả</a>
+           <a href="https://fiocoffee.com.vn/tin-tuc/danh-muc/news.html" title="Xem tất cả">Xem tất cả</a>
         </div>
      </div>
   </section>
