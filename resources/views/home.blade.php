@@ -28,7 +28,7 @@
         }
     }
 @endphp
-<div class="bodywrap">
+<div class="bodywrap container">
   <h1 class="d-none">{{$setting->company}}</h1>
   <div class="box_slide_banner box_slide_banner--full">
      <div class="home-slider swiper-container">
