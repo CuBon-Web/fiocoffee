@@ -135,19 +135,23 @@ if(!function_exists('languageName')){
         $code = Session::get('locale');
         foreach($arr as $item){
             if (is_object($item) && isset($item->lang_code) && $item->lang_code == $code) {
-                return $decodeUnicodeEscapes($item->content ?? '');
+                $content = $item->content ?? '';
+                return $decodeUnicodeEscapes(is_string($content) ? $content : (is_scalar($content) ? (string) $content : ''));
             }
             if (is_array($item) && isset($item['lang_code']) && $item['lang_code'] == $code) {
-                return $decodeUnicodeEscapes($item['content'] ?? '');
+                $content = $item['content'] ?? '';
+                return $decodeUnicodeEscapes(is_string($content) ? $content : (is_scalar($content) ? (string) $content : ''));
             }
         }
         // Fallback to first item content when locale entry is missing.
         $first = $arr[0] ?? null;
         if (is_object($first)) {
-            return $decodeUnicodeEscapes($first->content ?? '');
+            $content = $first->content ?? '';
+            return $decodeUnicodeEscapes(is_string($content) ? $content : (is_scalar($content) ? (string) $content : ''));
         }
         if (is_array($first)) {
-            return $decodeUnicodeEscapes($first['content'] ?? '');
+            $content = $first['content'] ?? '';
+            return $decodeUnicodeEscapes(is_string($content) ? $content : (is_scalar($content) ? (string) $content : ''));
         }
         return $decodeUnicodeEscapes((string) $arrName);
     }
@@ -361,6 +365,39 @@ if (!function_exists('r2_asset')) {
         }
 
         return rtrim($base, '/') . '/' . ltrim($path, '/');
+    }
+}
+if (!function_exists('media_url')) {
+    /**
+     * Resolve image/video path to a safe absolute URL string.
+     * Avoids url(null) returning UrlGenerator object in Blade {{ }}.
+     */
+    function media_url($path, $default = '')
+    {
+        if ($path === null || $path === '') {
+            return $default;
+        }
+
+        if (is_array($path)) {
+            $path = $path['url'] ?? $path['path'] ?? ($path[0] ?? '');
+        } elseif (is_object($path)) {
+            $path = $path->url ?? $path->path ?? '';
+        }
+
+        if (!is_string($path)) {
+            return $default;
+        }
+
+        $path = trim($path);
+        if ($path === '') {
+            return $default;
+        }
+
+        if (preg_match('/^https?:\/\//i', $path)) {
+            return $path;
+        }
+
+        return url($path);
     }
 }
 if (!function_exists('lazy_img')) {

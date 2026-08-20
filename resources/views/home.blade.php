@@ -398,7 +398,120 @@
          </div>
       </div>
    </section> --}}
-       
+        <section class="section_blog">
+            <div class="container">
+                <h2 class="title-module">
+                    <a href="tin-tuc" title="Tin tức mới nhất">
+                        Tin tức mới nhất
+                    </a>
+                </h2>
+                <div class="swiper_blogs swiper-container">
+                    <div class="swiper-wrapper load-after" data-section="section_blog">
+                        @foreach ($hotnews as $item)
+                            @php
+                                $blogTitle = languageName($item->title);
+                                $blogDesc = languageName($item->description);
+                                $blogImage = media_url($item->image ?? '', asset('frontend/images/lazy.png'));
+                                $blogSlug = is_string($item->slug ?? null) ? $item->slug : '';
+                            @endphp
+                            <div class="swiper-slide">
+                                <div class="item-blog">
+                                    <div class="block-thumb">
+                                        <a class="thumb" href="{{ route('detailBlog', ['slug' => $blogSlug]) }}"
+                                            title="{{ $blogTitle }}">
+                                            <img width="600" height="380" class="lazyload"
+                                                src="/frontend/images/lazy.png" data-src="{{ $blogImage }}"
+                                                alt="{{ $blogTitle }}">
+                                        </a>
+                                    </div>
+                                    <div class="day_time">
+                                        <span class="day_item">{{ date_format($item->created_at, 'd') }}</span>
+                                        <span class="myear_item">{{ date_format($item->created_at, 'm/Y') }}</span>
+                                    </div>
+                                    <div class="block-content">
+                                        <h3><a href="{{ route('detailBlog', ['slug' => $blogSlug]) }}"
+                                                title="{{ $blogTitle }}">{{ $blogTitle }}</a>
+                                        </h3>
+                                        <p class="justify">{!! $blogDesc !!}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+                <div class="see-more">
+                    <a href="{{ route('listCateBlog', ['slug' => 'news']) }}" title="Xem tất cả">Xem tất cả</a>
+                </div>
+            </div>
+        </section>
+        <script>
+            $(document).ready(function($) {
+                function runSwiperBlogs() {
+                    var blogs_pro = null;
+
+                    function initSwiperBlogs() {
+                        blogs_pro = new Swiper('.swiper_blogs', {
+                            slidesPerView: 4,
+                            spaceBetween: 20,
+                            watchOverflow: true,
+                            slidesPerGroup: 1,
+                            grabCursor: true,
+                            navigation: {
+                                nextEl: '.swiper_blogs .swiper-button-next',
+                                prevEl: '.swiper_blogs .swiper-button-prev',
+                            },
+                            breakpoints: {
+                                640: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 15
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20
+                                },
+                                992: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20
+                                },
+                                1024: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20
+                                },
+                                1200: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20
+                                },
+                                1500: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20
+                                }
+                            }
+                        });
+                    }
+
+                    function destroySwiperBlogs() {
+                        if (blogs_pro) {
+                            blogs_pro.destroy(true, true);
+                            blogs_pro = null;
+                        }
+                    }
+
+                    function toggleSwiperBlogs() {
+                        if ($(window).width() <= 767 && blogs_pro) {
+                            destroySwiperBlogs();
+                        } else if ($(window).width() > 767 && !blogs_pro) {
+                            initSwiperBlogs();
+                        }
+                    }
+                    toggleSwiperBlogs();
+                    $(window).resize(toggleSwiperBlogs);
+                }
+                lazyBlockProduct('section_blog', '0px 0px -250px 0px', runSwiperBlogs);
+            });
+        </script>
+
         <div id="js-global-alert" class="alert alert-success" role="alert">
             <button type="button" class="close"><span aria-hidden="true"><span
                         aria-hidden="true">&times;</span></span></button>
