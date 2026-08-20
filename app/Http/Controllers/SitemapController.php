@@ -35,22 +35,22 @@ class SitemapController extends Controller
                 'loc' => url('/sitemaps/product.xml'),
                 'lastmod' => $this->toAtomOrNow($productLastmod),
             ],
-            [
-                'loc' => url('/sitemaps/service-cate.xml'),
-                'lastmod' => $this->toAtomOrNow($serviceCateLastmod),
-            ],
-            [
-                'loc' => url('/sitemaps/service.xml'),
-                'lastmod' => $this->toAtomOrNow($serviceLastmod),
-            ],
-            [
-                'loc' => url('/sitemaps/project-cate.xml'),
-                'lastmod' => $this->toAtomOrNow($projectCateLastmod),
-            ],
-            [
-                'loc' => url('/sitemaps/project.xml'),
-                'lastmod' => $this->toAtomOrNow($projectLastmod),
-            ],
+            // [
+            //     'loc' => url('/sitemaps/service-cate.xml'),
+            //     'lastmod' => $this->toAtomOrNow($serviceCateLastmod),
+            // ],
+            // [
+            //     'loc' => url('/sitemaps/service.xml'),
+            //     'lastmod' => $this->toAtomOrNow($serviceLastmod),
+            // ],
+            // [
+            //     'loc' => url('/sitemaps/project-cate.xml'),
+            //     'lastmod' => $this->toAtomOrNow($projectCateLastmod),
+            // ],
+            // [
+            //     'loc' => url('/sitemaps/project.xml'),
+            //     'lastmod' => $this->toAtomOrNow($projectLastmod),
+            // ],
         ];
 
         $xml = view('sitemaps.index', compact('items'))->render();
