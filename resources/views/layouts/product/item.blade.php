@@ -95,7 +95,16 @@
           </h3>
           <ul class="product-feature-list">
             @foreach ($size as $item)
-            <li class="product-feature-list__item">{{ $item['title'] }}</li>
+            @php
+               $featureTitle = is_array($item) ? ($item['title'] ?? '') : (is_object($item) ? ($item->title ?? '') : '');
+               if (!is_string($featureTitle)) {
+                  $featureTitle = languageName($featureTitle);
+               }
+               $featureTitle = is_string($featureTitle) ? $featureTitle : '';
+            @endphp
+            @if ($featureTitle !== '')
+            <li class="product-feature-list__item">{{ $featureTitle }}</li>
+            @endif
             @endforeach
           </ul>
           <div class="price-box">

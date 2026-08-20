@@ -41,7 +41,7 @@
                <div class="hero-banner__media">
                  <img
                    src="{{ url($item->image) }}"
-                   alt="{{ $item->title ?: 'Fio Coffee' }}"
+                   alt="{{ is_string($item->title) && $item->title !== '' ? $item->title : 'Fio Coffee' }}"
                    class="hero-banner__img" />
                </div>
              </div>
@@ -54,7 +54,7 @@
                <div class="hero-banner__mobile-media">
                  <img
                    src="{{ url($mobileBanner) }}"
-                   alt="{{ $item->title ?: 'Fio Coffee' }}"
+                   alt="{{ is_string($item->title) && $item->title !== '' ? $item->title : 'Fio Coffee' }}"
                    class="hero-banner__mobile-img" />
                </div>
              </div>
@@ -81,17 +81,34 @@
                 Câu chuyện về Fio
              </a>
           </h2>
-          <p class="content_choose">{!!$gioithieu->description!!}
+          <p class="content_choose">{!! optional($gioithieu)->description !!}
           </p>
           <a href="{{route('aboutUs')}}" class="hero-banner__btn hero-banner__btn--primary" title="Tìm hiểu thêm">Tìm hiểu thêm</a>
        </div>
          <div class="col-lg-8 col-md-8">
             <div class="img_thm">
                <div class="box_img">
+                  @php
+                     $gioiImages = [];
+                     if (!empty($gioithieu) && !empty($gioithieu->image)) {
+                        $gioiImages = is_array($gioithieu->image)
+                           ? $gioithieu->image
+                           : (json_decode($gioithieu->image, true) ?: []);
+                     }
+                     $gioiThumb = $gioiImages[0] ?? '';
+                     if (is_array($gioiThumb)) {
+                        $gioiThumb = $gioiThumb['url'] ?? $gioiThumb['path'] ?? '';
+                     } elseif (is_object($gioiThumb)) {
+                        $gioiThumb = $gioiThumb->url ?? $gioiThumb->path ?? '';
+                     }
+                     $gioiThumb = is_string($gioiThumb) ? $gioiThumb : '';
+                  @endphp
+                  @if ($gioiThumb !== '')
                   <img class="lazyload"
                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                     data-src="{{url(json_decode($gioithieu->image)[0])}}"
+                     data-src="{{ url($gioiThumb) }}"
                      alt="Tại sao chọn chúng tôi" />
+                  @endif
                </div>
                {{-- video play icon removed; use hero "Xem video" popup --}}
             </div>

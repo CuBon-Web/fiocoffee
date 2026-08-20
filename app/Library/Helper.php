@@ -99,7 +99,7 @@ if(!function_exists('languageName')){
     function languageName($arrName){
         $decodeUnicodeEscapes = function ($value) {
             if (!is_string($value) || $value === '') {
-                return $value;
+                return is_string($value) ? $value : '';
             }
 
             if (strpos($value, '\u') === false) {
