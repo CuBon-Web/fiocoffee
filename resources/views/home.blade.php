@@ -245,7 +245,73 @@
 
 
 
-        
+        <section class="section_danh_gia lazyload">
+            <div class="container">
+                <h2 class="title-module">
+                    <a href="javascript:;" title="Đánh giá khách hàng">
+                        Đánh giá khách hàng
+                    </a>
+                </h2>
+                <div class="review-swiper-wrap">
+                    <div class="swiper_feedback swiper-container">
+                        <div class="swiper-wrapper">
+                            @foreach ($ReviewCus as $item)
+                                <div class="swiper-slide">
+                                    <div class="review-card">
+                                        <div class="review-card__header">
+                                            <div class="review-card__avatar">
+                                                <img width="56" height="56" class="lazyload"
+                                                    src="{{ asset('frontend/images/lazy.png') }}"
+                                                    data-src="{{ url($item->avatar) }}"
+                                                    alt="{{ languageName($item->name) }}" />
+                                            </div>
+                                            <div class="review-card__stars" aria-label="5 sao">
+                                                @for ($i = 0; $i < 5; $i++)
+                                                    <span class="review-card__star" aria-hidden="true">★</span>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                        <div class="review-card__content">{!! languageName($item->content) !!}</div>
+                                        <div class="review-card__name">{{ languageName($item->name) }}</div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button type="button" class="swiper-button-prev review-swiper__nav"
+                            aria-label="Xem trước"></button>
+                        <button type="button" class="swiper-button-next review-swiper__nav"
+                            aria-label="Xem tiếp"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            var swiper_feedback = new Swiper('.swiper_feedback', {
+                slidesPerView: 1.3,
+                spaceBetween: 16,
+                watchOverflow: true,
+                slidesPerGroup: 1,
+                grabCursor: true,
+                navigation: {
+                    nextEl: '.swiper_feedback .swiper-button-next',
+                    prevEl: '.swiper_feedback .swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1.3,
+                        spaceBetween: 16
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    992: {
+                        slidesPerView: 3,
+                        spaceBetween: 24
+                    }
+                }
+            });
+        </script>
         <section class="section-faq">
             <div class="container">
                 <h2 class="title-module title-module--faq">
@@ -332,115 +398,7 @@
          </div>
       </div>
    </section> --}}
-        <section class="section_blog">
-            <div class="container">
-                <h2 class="title-module">
-                    <a href="tin-tuc" title="Tin tức mới nhất">
-                        Tin tức mới nhất
-                    </a>
-                </h2>
-                <div class="swiper_blogs swiper-container">
-                    <div class="swiper-wrapper load-after" data-section="section_blog">
-                        @foreach ($hotnews as $item)
-                            <div class="swiper-slide">
-                                <div class="item-blog">
-                                    <div class="block-thumb">
-                                        <a class="thumb" href="{{ route('detailBlog', ['slug' => $item->slug]) }}"
-                                            title="{{ languageName($item->title) }}">
-                                            <img width="600" height="380" class="lazyload"
-                                                src="/frontend/images/lazy.png" data-src="{{ url($item->image) }}"
-                                                alt="{{ languageName($item->title) }}">
-                                        </a>
-                                    </div>
-                                    <div class="day_time">
-                                        <span class="day_item">{{ date_format($item->created_at, 'd') }}</span>
-                                        <span class="myear_item">{{ date_format($item->created_at, 'm/Y') }}</span>
-                                    </div>
-                                    <div class="block-content">
-                                        <h3><a href="{{ route('detailBlog', ['slug' => $item->slug]) }}"
-                                                title="{{ languageName($item->title) }}">{{ languageName($item->title) }}</a>
-                                        </h3>
-                                        <p class="justify">{!! languageName($item->description) !!}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-                <div class="see-more">
-                    <a href="https://fiocoffee.com.vn/tin-tuc/danh-muc/news.html" title="Xem tất cả">Xem tất cả</a>
-                </div>
-            </div>
-        </section>
-        <script>
-            $(document).ready(function($) {
-                function runSwiperBlogs() {
-                    var blogs_pro = null;
-
-                    function initSwiperBlogs() {
-                        blogs_pro = new Swiper('.swiper_blogs', {
-                            slidesPerView: 4,
-                            spaceBetween: 20,
-                            watchOverflow: true,
-                            slidesPerGroup: 1,
-                            grabCursor: true,
-                            navigation: {
-                                nextEl: '.swiper_blogs .swiper-button-next',
-                                prevEl: '.swiper_blogs .swiper-button-prev',
-                            },
-                            breakpoints: {
-                                640: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 15
-                                },
-                                768: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 20
-                                },
-                                992: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20
-                                },
-                                1024: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20
-                                },
-                                1200: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20
-                                },
-                                1500: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20
-                                }
-                            }
-                        });
-                    }
-
-                    function destroySwiperBlogs() {
-                        if (blogs_pro) {
-                            blogs_pro.destroy(true, true);
-                            blogs_pro = null;
-                        }
-                    }
-
-                    function toggleSwiperBlogs() {
-                        if ($(window).width() <= 767 && blogs_pro) {
-                            destroySwiperBlogs();
-                        } else if ($(window).width() > 767 && !blogs_pro) {
-                            initSwiperBlogs();
-                        }
-                    }
-                    toggleSwiperBlogs();
-                    $(window).resize(toggleSwiperBlogs);
-                }
-                lazyBlockProduct('section_blog', '0px 0px -250px 0px', runSwiperBlogs);
-            });
-        </script>
+       
         <div id="js-global-alert" class="alert alert-success" role="alert">
             <button type="button" class="close"><span aria-hidden="true"><span
                         aria-hidden="true">&times;</span></span></button>
