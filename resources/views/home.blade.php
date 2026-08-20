@@ -246,6 +246,136 @@
 
 
         
+        <section class="section-faq">
+            <div class="container">
+                <h2 class="title-module title-module--faq">
+                    <a href="javascript:;" title="Câu hỏi thường gặp">
+                        <span class="title-module__highlight">Câu hỏi</span> thường gặp
+                    </a>
+                </h2>
+                @if (isset($homeFaqs) && count($homeFaqs))
+                    <div class="home-faq" id="home-faq">
+                        @foreach ($homeFaqs as $faq)
+                            <div class="home-faq__item">
+                                <button type="button" class="home-faq__question" aria-expanded="false">
+                                    <span class="home-faq__question-text">{{ $faq->question }}</span>
+                                    <span class="home-faq__icon" aria-hidden="true">
+                                        <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1.5L7 6.5L13 1.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div class="home-faq__answer">
+                                    <div class="home-faq__answer-inner">{!! $faq->answer !!}</div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </section>
+        <script>
+            $(function() {
+                $('#home-faq .home-faq__question').on('click', function() {
+                    var $btn = $(this);
+                    var $item = $btn.closest('.home-faq__item');
+                    var $answer = $item.find('.home-faq__answer');
+                    var isOpen = $item.hasClass('is-open');
+
+                    $item.toggleClass('is-open');
+                    $btn.attr('aria-expanded', !isOpen);
+                    $answer.stop(true, true).slideToggle(250);
+                });
+            });
+        </script>
+        {{-- <section class="tieuchi">
+      <div class="container">
+         <div class="tieuchi__list">
+            <div class="tieuchi__item">
+               <div class="tieuchi__icon" aria-hidden="true">
+                  <img src="{{ asset('frontend/images/tieuchi/icon-shipping.svg') }}" width="40" height="40" alt="">
+               </div>
+               <div class="tieuchi__text">
+                  <strong class="tieuchi__title">Giao hàng toàn quốc</strong>
+                  <span class="tieuchi__desc">Miễn phí đơn từ 300.000đ</span>
+               </div>
+            </div>
+            <div class="tieuchi__item">
+               <div class="tieuchi__icon" aria-hidden="true">
+                  <img src="{{ asset('frontend/images/tieuchi/icon-shield.svg') }}" width="40" height="40" alt="">
+               </div>
+               <div class="tieuchi__text">
+                  <strong class="tieuchi__title">Thanh toán an toàn</strong>
+                  <span class="tieuchi__desc">Bảo mật thông tin tuyệt đối</span>
+               </div>
+            </div>
+            <div class="tieuchi__item">
+               <div class="tieuchi__icon" aria-hidden="true">
+                  <img src="{{ asset('frontend/images/tieuchi/icon-support.svg') }}" width="40" height="40" alt="">
+               </div>
+               <div class="tieuchi__text">
+                  <strong class="tieuchi__title">Hỗ trợ nhanh chóng</strong>
+                  <span class="tieuchi__desc">Tư vấn 24/7</span>
+               </div>
+            </div>
+            <div class="tieuchi__item">
+               <div class="tieuchi__icon" aria-hidden="true">
+                  <img src="{{ asset('frontend/images/tieuchi/icon-quality.svg') }}" width="40" height="40" alt="">
+               </div>
+               <div class="tieuchi__text">
+                  <strong class="tieuchi__title">Cam kết chất lượng</strong>
+                  <span class="tieuchi__desc">Sản phẩm chính hãng</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section> --}}
+        <section class="section_blog">
+            <div class="container">
+                <h2 class="title-module">
+                    <a href="tin-tuc" title="Tin tức mới nhất">
+                        Tin tức mới nhất
+                    </a>
+                </h2>
+                <div class="swiper_blogs swiper-container">
+                    <div class="swiper-wrapper load-after" data-section="section_blog">
+                        @foreach ($hotnews as $item)
+                            <div class="swiper-slide">
+                                <div class="item-blog">
+                                    <div class="block-thumb">
+                                        <a class="thumb" href="{{ route('detailBlog', ['slug' => $item->slug]) }}"
+                                            title="{{ languageName($item->title) }}">
+                                            <img width="600" height="380" class="lazyload"
+                                                src="/frontend/images/lazy.png" data-src="{{ url($item->image) }}"
+                                                alt="{{ languageName($item->title) }}">
+                                        </a>
+                                    </div>
+                                    <div class="day_time">
+                                        <span class="day_item">{{ date_format($item->created_at, 'd') }}</span>
+                                        <span class="myear_item">{{ date_format($item->created_at, 'm/Y') }}</span>
+                                    </div>
+                                    <div class="block-content">
+                                        <h3><a href="{{ route('detailBlog', ['slug' => $item->slug]) }}"
+                                                title="{{ languageName($item->title) }}">{{ languageName($item->title) }}</a>
+                                        </h3>
+                                        <p class="justify">{!! languageName($item->description) !!}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+                <div class="see-more">
+                    <a href="https://fiocoffee.com.vn/tin-tuc/danh-muc/news.html" title="Xem tất cả">Xem tất cả</a>
+                </div>
+            </div>
+        </section>
         <script>
             $(document).ready(function($) {
                 function runSwiperBlogs() {
